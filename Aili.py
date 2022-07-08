@@ -1,4 +1,3 @@
-from http import server
 from time import strftime
 import pyttsx3
 import datetime
