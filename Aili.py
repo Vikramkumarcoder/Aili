@@ -1,5 +1,3 @@
-from http import server
-from time import strftime
 import pyttsx3
 import datetime
 import speech_recognition as sr
@@ -45,7 +43,7 @@ def takeCommand():
         print(f"User: {query}")
     except Exception as e:
         print("voice does not recognize! Please Speak loudly")
-        speak("voice does not recognize! Please Speak loudly")
+        speak("voice does not recognize!")
         return "None"
     return query
 
@@ -57,6 +55,145 @@ def sendEmail(to, content):
     server.sendmail("sender_gmail@gmail.com", to, content)
     server.close()
 
+def snakeWaterGun():
+    print("Welcome to Snake, Water and Gun game\n")
+    speak("Welcome to Snake, Water and Gun game")
+    object= ["s", "w", "g"]
+    x=5
+    score1=0
+    score2=0
+    while (x>=0):
+        print("""Choose any one:\nsnake\nwater\ngun\n""")
+        speak("""Choose any one:snake or water or gun""")
+        yourinput = takeCommand().lower()
+        computer= random. choice(object)
+        
+        if computer=="w" and "s" in yourinput:
+            print("Aili had chosen: water")
+            speak("I had chosen: water")
+            print("You had chosen: snake")
+            speak("You had chosen: snake")
+            print("You won!")
+            speak("You won!")
+            print("The remaining rounds:", x)
+            x-=1
+            score1+=100
+        
+        elif computer=="w" and "g" in yourinput:
+            print("Aili had chosen: water")
+            speak("I had chosen: water")
+            print("You had chosen: gun")
+            speak("You had chosen: gun")
+            print("Aili won!")
+            speak("I won!")
+            score2+=100
+            print("The remaining rounds:", x)
+            x-=1
+        
+        elif computer=="g" and "s" in yourinput:
+            print("Aili had chosen: gun")
+            speak("I had chosen: gun")
+            print("You had chosen: snake")
+            speak("You had chosen: snake")
+            print("Aili won!")
+            speak("I won")
+            score2+=100
+            print("The remaining rounds:", x)
+            x-=1
+    
+        elif computer=="g" and "w" in yourinput:
+            print("Aili had chosen: gun")
+            speak("I had chosen: gun")
+            print("You had chosen: water")
+            speak("You had chosen: water")
+            print("You won!")
+            speak("You won!")
+            score1+=100
+            print("The remaining rounds:", x)
+            x-=1
+        
+        elif computer=="s" and "g" in yourinput:
+            print("Aili had chosen: snake")
+            speak("I had chosen: snake")
+            print("You had chosen: gun")
+            speak("You had chosen: gun")
+            print("You won!")
+            speak("You won!")
+            print("The remaining rounds:", x)
+            x-=1
+            score1+=100
+        
+        elif computer=="s" and "w" in yourinput:
+            print("Aili had chosen: snake")
+            speak("I had chosen: snake")
+            print("You had chosen: water")
+            speak("You had chosen: water")
+            print("I won!")
+            speak("I won!")
+            print("The remaining rounds:", x)
+            score2+=100
+            x-=1
+        
+        elif computer=="w" and "w" in yourinput:
+            print("Aili had chosen: water")
+            speak("I had chosen: water")
+            print("You had chosen: water")
+            speak("You had chosen: water")
+            score1+=50
+            score2+=50
+            print("Draw!")
+            speak("Draw!")
+            print("The remaining rounds:", x)
+            x-=1
+        
+        elif computer=="s" and "s" in yourinput:
+            print("Aili had chosen: snake")
+            speak("I had chosen: snake")
+            print("You had chosen: snake")
+            speak("You had chosen: snake")
+            print("Draw!")
+            speak("Draw!")
+            score1+=50
+            score2+=50
+            print("The remaining rounds:", x)
+            x-=1
+        
+        elif computer=="g" and "g" in yourinput:
+            print("Aili had chosen: gun")
+            speak("I had chosen: gun")
+            print("You had chosen: gun")
+            speak("You had chosen: gun")
+            score1+=50
+            score2+=50
+            print("Draw!")
+            speak("Draw!")
+            print("The remaining rounds:", x)
+            x-=1
+        
+        else:
+            print("Speak valid word")
+            speak("speak valid word")
+            print("The remaining rounds:", x)
+            print("Computer's choice:", computer)
+        
+    print("\nYour score:       Aili's score:\n\n","  ",  
+                score1, "                ", score2,"\n")
+    speak(f"Your score is  {score1} and My score is {score2}")
+    
+    if score1>score2:
+        print("Congratulation! You won the game.")
+        speak("Congratulation! You won the game.")
+        speak("You are really champion in this game")
+        speak("Oh! no I lose the game")
+    
+    elif score1<score2:
+        print("I won.\nTry again!")
+        speak("I won the game")
+        
+    elif score1==score2:
+        print("Draw!")
+        speak("You are really champion in this game")
+            
 if __name__ == "__main__":
     wishme()
     while True:
@@ -119,4 +256,6 @@ if __name__ == "__main__":
                 print(e)
                 speak("Sorry, I am not able to send email")
 
-        
+        elif "play game" in query:
+            speak("I am very excited! let's play game")
+            snakeWaterGun()
