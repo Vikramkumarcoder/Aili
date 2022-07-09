@@ -1,4 +1,3 @@
-from time import strftime
 import pyttsx3
 import datetime
 import speech_recognition as sr
