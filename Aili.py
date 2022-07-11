@@ -179,7 +179,7 @@ def snakeWaterGun():
             print("Speak valid word")
             speak("speak valid word")
             print("The remaining rounds:", x)
-            print("Computer's choice:", computer)
+            print("Aili had chosen:", computer)
         
     print("\nYour score:       Aili's score:\n\n","  ",  
                 score1, "                ", score2,"\n")
