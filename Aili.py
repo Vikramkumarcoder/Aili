@@ -8,16 +8,19 @@ import random
 import datetime
 import smtplib
 
+# Initilizing Aili voice
 engine = pyttsx3.init("sapi5")
 voice = engine.getProperty("voices")
 print(voice[0].id)
 engine.setProperty("voice", voice[1].id)
 
 def speak(audio):
+    """Use to speak  given sentences"""
     engine.say(audio)
     engine.runAndWait()
 
 def wishme():
+    """According to time Aili wish me using this function"""
     hour = int(datetime.datetime.now().hour)
     if 0<=hour<12:
         speak("Good Morning!")
@@ -28,7 +31,7 @@ def wishme():
     speak("I am Aili. Sir, how can i help you")
 
 def takeCommand():
-    """"Takes sound through Microphone as input"""
+    """"Takes sound through Microphone as input and return sentence as output"""
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening.....")
@@ -48,6 +51,7 @@ def takeCommand():
     return query
 
 def sendEmail(to, content):
+    """Take receiver's address and sender message as input and send Email to receiver's address"""
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.ehlo()
     server.starttls()
@@ -56,6 +60,7 @@ def sendEmail(to, content):
     server.close()
 
 def snakeWaterGun():
+    """This is snake water gun game which is executed when play game command given"""
     print("Welcome to Snake, Water and Gun game\n")
     speak("Welcome to Snake, Water and Gun game")
     object= ["s", "w", "g"]
@@ -193,14 +198,20 @@ def snakeWaterGun():
     elif score1==score2:
         print("Draw!")
         speak("You are really champion in this game")
+    print("Game Over")
             
 if __name__ == "__main__":
+    """Try to say play music, play favorite music, play a song, open youtube, open google, something accoring to wikipedia, open stackoverflow, """
     wishme()
     while True:
         query = takeCommand().lower()
         
         if "your name" in query:
             speak("I am Aili")
+
+        elif "quit" in query or "bye" in query:
+            speak("Ok! Good bye")
+            break
 
         elif "wikipedia" in query:
             speak("Searching wikipedia....")
@@ -222,7 +233,7 @@ if __name__ == "__main__":
         elif "open stackoverflow" in query:
             webbrowser.open("stackoverflow.com")
 
-        elif "play music" in query or "play song" in query:
+        elif "play music" in query or "play a song" in query:
             music_dir = "D:\\Music"
             songs = os.listdir(music_dir)
             song = random.randint(0,len(songs)-1)
