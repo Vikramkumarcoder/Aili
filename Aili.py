@@ -202,10 +202,9 @@ def snakeWaterGun():
             
 if __name__ == "__main__":
     """Try to say play music, play favorite music, play a song, open youtube, open google, something accoring to wikipedia, open stackoverflow, """
-    wishme()
+    # wishme()
     while True:
         query = takeCommand().lower()
-        
         if "your name" in query:
             speak("I am Aili")
 
@@ -270,3 +269,9 @@ if __name__ == "__main__":
         elif "play game" in query:
             speak("I am very excited! let's play game")
             snakeWaterGun()
+
+        else:
+            print("serching....")
+            speak("Searching in google....")
+            webbrowser.open(f"https://www.google.com/search?q={query}")
+            speak("Here the result from google0...")
